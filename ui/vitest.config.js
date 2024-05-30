@@ -14,6 +14,7 @@ export default defineConfig({
     environment: "jdom",
     exclude: ["**/node_modules/**"],
     threads: false,
+    setupFiles: "./vitest-setup.ts",
     coverage: {
       reporter: ["text", "lcov"],
     },
