@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.net.URI
 
 plugins {
 	id("org.springframework.boot") version "3.3.0"
@@ -16,12 +17,22 @@ java {
 
 repositories {
 	mavenCentral()
+	maven {
+		url = uri("https://artifacts.alfresco.com/nexus/content/repositories/public/")
+	}
 }
+
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.activiti:activiti-spring-boot-starter:8.0.0")
+
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("com.h2database:h2:2.2.224")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
