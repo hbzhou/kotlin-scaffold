@@ -14,7 +14,7 @@ class KotlinScaffoldApplication{
 	fun userDetailsService(): UserDetailsService {
 		val user = User.withUsername("user")
 			.password("{noop}pass")
-			.authorities("ROLE_ACTIVITI_USER")
+			.authorities("ROLE_ACTIVITI_USER", "ROLE_ACTIVITI_ADMIN")
 			.build()
 		return InMemoryUserDetailsManager(user)
 	}

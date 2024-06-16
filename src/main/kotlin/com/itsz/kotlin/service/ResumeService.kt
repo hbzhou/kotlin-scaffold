@@ -1,11 +1,13 @@
 package com.itsz.kotlin.service
 
+import org.activiti.engine.delegate.DelegateExecution
+import org.activiti.engine.delegate.JavaDelegate
 import org.springframework.stereotype.Component
 
 @Component
-class ResumeService {
+class ResumeService: JavaDelegate {
 
-    fun storeResume(){
+    override fun execute(execution: DelegateExecution) {
         println("storing resume ....")
     }
 }
