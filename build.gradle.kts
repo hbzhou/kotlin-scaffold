@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.net.URI
 
 plugins {
 	id("org.springframework.boot") version "3.3.0"
@@ -33,7 +32,11 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("com.h2database:h2:2.2.224")
 
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-test"){
+		exclude(module = "mockito-core")
+	}
+	testImplementation("com.ninja-squad:springmockk:4.0.2")
+
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
@@ -46,4 +49,7 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+	jvmArgs(
+		"--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED"
+	)
 }

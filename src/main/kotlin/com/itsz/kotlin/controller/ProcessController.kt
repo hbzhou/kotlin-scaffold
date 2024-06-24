@@ -4,7 +4,6 @@ import org.activiti.engine.RepositoryService
 import org.activiti.engine.RuntimeService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/processes")
 class ProcessController(val repositoryService: RepositoryService, val runtimeService: RuntimeService) {
 
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
     fun startProcess(@PathVariable id: String): String {
         val processInstance = runtimeService.startProcessInstanceById(id)
         return processInstance.processDefinitionKey

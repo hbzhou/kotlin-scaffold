@@ -28,6 +28,21 @@ class ProcessBuilder(
         flowElements.add(serviceTask)
     }
 
+    fun inclusiveGateway(init: InclusiveGateway.() -> Unit){
+        val inclusiveGateway = InclusiveGateway().apply(init)
+        flowElements.add(inclusiveGateway)
+    }
+
+    fun exclusiveGateway(init:ExclusiveGateway.() -> Unit){
+        val exclusiveGateway = ExclusiveGateway().apply(init)
+        flowElements.add(exclusiveGateway)
+    }
+
+    fun parallelGateway(init: ParallelGateway.() -> Unit){
+        val parallelGateway = ParallelGateway().apply(init)
+        flowElements.add(parallelGateway)
+    }
+
     fun sequenceFlow(init: SequenceFlow.()-> Unit){
         val sequenceFlow = SequenceFlow().apply(init)
         flowElements.add(sequenceFlow)

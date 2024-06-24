@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.util.stream.Collectors
 
@@ -21,10 +22,8 @@ class TaskController(val taskService: TaskService) {
         taskService.createTaskQuery().active().list().stream().collect(Collectors.toMap({ it.id }, { it.name }))
 
 
-    @PostMapping("/{taskId}")
-    fun completeTask(@PathVariable taskId: String) {
-        taskService.complete(taskId)
+    @GetMapping("/{taskId}")
+    fun completeTask(@PathVariable taskId: String, @RequestParam approval1: Boolean = false, @RequestParam approval2: Boolean = false) {
+        taskService.complete(taskId, mapOf("approval1" to approval1, "approval2" to approval2))
     }
-
-
 }
